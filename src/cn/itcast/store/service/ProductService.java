@@ -50,4 +50,32 @@ public interface ProductService {
      * @param product
      */
     void addProduct(Product product) throws SQLException;
+
+    /**
+     * 修改商品信息
+     *
+     * @param product
+     */
+    void updateProduct(Product product) throws SQLException;
+
+    /**
+     * 下架商品
+     *
+     * @param pid
+     */
+    void lowerSelf(String pid) throws SQLException;
+
+    /**
+     * 获取下架商品
+     *
+     * @return
+     */
+    List<Product> getLowerSelfProduct() throws SQLException;
+
+    /**
+     * 上架商品
+     *
+     * @param pid
+     */
+    void upperSelfByPid(String pid) throws SQLException;
 }

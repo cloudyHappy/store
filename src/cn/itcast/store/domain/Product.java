@@ -22,5 +22,5 @@ public class Product {
     private String pdesc;//商品描述
     private int pflag;//商品标记
     private Category category = new Category();//商品分类
-    private int cid;
+    private String cid;
 }

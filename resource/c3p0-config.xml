@@ -4,7 +4,7 @@
         <property name="driverClass">com.mysql.jdbc.Driver</property>
         <property name="jdbcUrl">jdbc:mysql://localhost:3306/store?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</property>
         <property name="user">root</property>
-        <property name="password">123.qwera</property>
+        <property name="password">1234</property>
         <property name="checkoutTimeout">30000</property>
         <property name="idleConnectionTestPeriod">30</property>
         <property name="initialPoolSize">10</property>
@@ -23,7 +23,7 @@
         <property name="driverClass">com.mysql.jdbc.Driver</property>
         <property name="jdbcUrl">jdbc:mysql://localhost:3306/store?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false</property>
         <property name="user">root</property>
-        <property name="password">123.qwera</property>
+        <property name="password">1234</property>
         <!-- 如果池中数据连接不够时一次增长多少个 -->fasdfaskdfaasdfpublic static void main
         <property name="acquireIncrement">5</property>
         <property name="initialPoolSize">20</property>

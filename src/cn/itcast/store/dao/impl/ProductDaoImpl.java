@@ -71,20 +71,21 @@ public class ProductDaoImpl implements ProductDao {
                 ".cid,c.cname from product p inner join category c  on p.cid = c.cid where p.pid = ?";
         Map<String, Object> map = runner.query(sql, new MapHandler(), pid);
         Product product = new Product();
-        BeanUtils.populate(product,map );
-        product.getCategory().setCid((String)map.get("cid"));
-        product.getCategory().setCname((String)map.get("cname"));
+        BeanUtils.populate(product, map);
+        product.getCategory().setCid((String) map.get("cid"));
+        product.getCategory().setCname((String) map.get("cname"));
         return product;
     }
 
     public Integer getTotalRecordsByCid(String cid) throws SQLException {
         String sql = "select count(1) from product where cid = ?";
-        Long totalRecords = (Long)runner.query(sql, new ScalarHandler(),cid);
+        Long totalRecords = (Long) runner.query(sql, new ScalarHandler(), cid);
         return totalRecords.intValue();
     }
 
-    public List<Product> getProductByCidWithPage(String cid, Integer startIndex, Integer pageSize) throws SQLException, InvocationTargetException, IllegalAccessException {
-        String sql = "select * from product  where cid = ? order by pdate desc limit ?,?";
+    public List<Product> getProductByCidWithPage(String cid, Integer startIndex, Integer pageSize) throws SQLException, InvocationTargetException,
+            IllegalAccessException {
+        String sql = "select * from product  where cid = ? and pflag=0 order by pdate desc limit ?,?";
         List<Map<String, Object>> mapList = runner.query(sql, new MapListHandler(), cid, startIndex, pageSize);
         List<Product> list = new ArrayList<>();
         for (Map<String, Object> map : mapList) {
@@ -106,7 +107,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> getProductWithPage(Integer currentPage, Integer pageSize) throws SQLException {
-        String sql = "select * from product order by pdate desc limit ?,?";
+        String sql = "select * from product where cid is not null and pflag=0 order by pdate desc limit ?,?";
         QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
         List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class), currentPage, pageSize);
         return list;
@@ -115,11 +116,42 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void addProduct(Product product) throws SQLException {
         String sql = "insert into product values(?,?,?,?,?,?,?,?,?,?)";
-        Object[] params = new Object[]{product.getPid(),product.getPname(),product.getMarket_price(),
-                product.getShop_price(),product.getPimage(),product.getPdate(),product.getIs_hot(),product.getPdesc()
-                ,product.getPflag(),product.getCid()};
+        Object[] params = new Object[]{product.getPid(), product.getPname(), product.getMarket_price(),
+                product.getShop_price(), product.getPimage(), product.getPdate(), product.getIs_hot(), product.getPdesc()
+                , product.getPflag(), product.getCid()};
         QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
-        runner.update(sql,params );
+        runner.update(sql, params);
 
+    }
+
+    @Override
+    public void updateProduct(Product product) throws SQLException {
+        String sql = "update product set pname=?,market_price=?,shop_price=?,pimage=?,is_hot=?,pdesc=?,cid=? where pid = ?";
+        Object[] parameters = new Object[]{product.getPname(), product.getMarket_price(), product.getShop_price(), product.getPimage(),
+                product.getIs_hot(), product.getPdesc(), product.getCategory().getCid(), product.getPid()};
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        queryRunner.update(sql, parameters);
+    }
+
+    @Override
+    public void lowerSelf(String pid) throws SQLException {
+        String sql = "update product set pflag = 1 where pid = ?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        runner.update(sql, pid);
+    }
+
+    @Override
+    public List<Product> getAllLowerSelf() throws SQLException {
+        String sql = "select * from product where pflag=1";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        List<Product> list = runner.query(sql, new BeanListHandler<Product>(Product.class));
+        return list;
+    }
+
+    @Override
+    public void upperSelfByPid(String pid) throws SQLException {
+        String sql = "update product set pflag = 0 where pid = ?";
+        QueryRunner runner = new QueryRunner(JDBCUtils.getDataSource());
+        runner.update(sql, pid);
     }
 }

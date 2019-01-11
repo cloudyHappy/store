@@ -24,7 +24,7 @@
 <body>
 <div class="container-fluid">
     <div class="col-md-4">
-        <img src="${pageContext.request.contextPath}/img/logo2.png"/>
+        <img src="${pageContext.request.contextPath}/img/ggg.gif" style="width: 150px;height: 100px;"/>
     </div>
     <div class="col-md-5">
         <img src="${pageContext.request.contextPath}/img/header.png"/>

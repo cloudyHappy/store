@@ -49,4 +49,24 @@ public class ProductServiceImpl implements ProductService {
     public void addProduct(Product product) throws SQLException {
         productDao.addProduct(product);
     }
+
+    @Override
+    public void updateProduct(Product product) throws SQLException {
+        productDao.updateProduct(product);
+    }
+
+    @Override
+    public void lowerSelf(String pid) throws SQLException {
+        productDao.lowerSelf(pid);
+    }
+
+    @Override
+    public List<Product> getLowerSelfProduct() throws SQLException {
+        return productDao.getAllLowerSelf();
+    }
+
+    @Override
+    public void upperSelfByPid(String pid) throws SQLException {
+        productDao.upperSelfByPid(pid);
+    }
 }

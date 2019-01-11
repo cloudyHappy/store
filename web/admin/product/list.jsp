@@ -63,9 +63,10 @@
                         </td>
                         <td align="center" width="17%">
                             商品价格
-                        </td><td align="center" width="17%">
-                        上架时间
-                    </td>
+                        </td>
+                        <td align="center" width="17%">
+                            上架时间
+                        </td>
                         <td align="center" width="5%">
                             是否热门
                         </td>
@@ -95,10 +96,11 @@
                             <td style="CURSOR: hand; HEIGHT: 22px" align="center"
                                 width="17%">
                                     ${ product.shop_price }
-                            </td><td style="CURSOR: hand; HEIGHT: 22px" align="center"
-                                     width="17%">
-                                ${ product.pdate}
-                        </td>
+                            </td>
+                            <td style="CURSOR: hand; HEIGHT: 22px" align="center"
+                                width="17%">
+                                    ${ product.pdate}
+                            </td>
                             <td style="CURSOR: hand; HEIGHT: 22px" align="center"
                                 width="5%">
                                 <c:if test="${product.is_hot==1}">
@@ -110,7 +112,7 @@
 
                             </td>
                             <td align="center" style="HEIGHT: 22px">
-                                <a href="">
+                                <a href="${pageContext.request.contextPath}/AdminProductServlet?method=editUI&pid=${product.pid}">
                                     <img src="${pageContext.request.contextPath}/img/admin/i_edit.gif" border="0"
                                          style="CURSOR: hand">
                                 </a>
@@ -118,8 +120,9 @@
 
                             <td align="center" style="HEIGHT: 22px">
                                     <%--下架 pushdown --%>
-                                <a href="${pageContext.request.contextPath}/">
-                                    <img src="${pageContext.request.contextPath}/img/admin/i_del.gif" width="16" height="16"
+                                <a href="${pageContext.request.contextPath}/AdminProductServlet?method=lowerShelf&pid=${product.pid}">
+                                    <img src="${pageContext.request.contextPath}/img/admin/i_del.gif" width="16"
+                                         height="16"
                                          border="0" style="CURSOR: hand">
                                 </a>
                             </td>
@@ -130,7 +133,7 @@
             </td>
         </tr>
 
-            <%--<%@include file="" %>--%>
+        <%--<%@include file="" %>--%>
 
 
         <%--       <tr align="center">
@@ -162,7 +165,7 @@
         </TBODY>
     </table>
     <div style="margin-left: 40%">
-    <jsp:include page="../../jsp/page.jsp"/>
+        <jsp:include page="../../jsp/page.jsp"/>
 
     </div>
 </form>

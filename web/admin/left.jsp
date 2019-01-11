@@ -37,7 +37,7 @@
 
 		d.add('0104','01','商品管理');
 		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/AdminProductServlet?method=getAllProductWithPage&currentPage=1','','mainFrame');
-		d.add('010402','0104','已下架商品管理','${pageContext.request.contextPath}/admin/product/pushDown_list.jsp','','mainFrame');
+        d.add('010402', '0104', '已下架商品管理', '${pageContext.request.contextPath}/AdminProductServlet?method=getLowerSelfProduct', '', 'mainFrame');
 		d.add('010403','0104','添加商品','${pageContext.request.contextPath}/AdminProductServlet?method=addProductUI','','mainFrame');
 
 		d.add('0105','01','订单管理');
