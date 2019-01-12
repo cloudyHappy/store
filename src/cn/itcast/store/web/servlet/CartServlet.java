@@ -15,6 +15,15 @@ import java.io.IOException;
 
 @WebServlet(value = "/CartServlet")
 public class CartServlet extends BaseServlet {
+    /**
+     * 将购物项添加进入购物车
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String addCartItemToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         String pid = request.getParameter("pid");

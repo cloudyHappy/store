@@ -14,6 +14,15 @@ import java.io.IOException;
 
 @WebServlet(value = "/ProductServlet")
 public class ProductServlet extends BaseServlet {
+    /**
+     * 根据商品id获取商品
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String getProductById(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         String pid = request.getParameter("pid");
@@ -28,7 +37,14 @@ public class ProductServlet extends BaseServlet {
         return "jsp/product_info.jsp";
     }
 
-
+    /**
+     * 根据分类,分页获取商品列表
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String getProductByCidWithPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String cid = request.getParameter("cid");
         Integer currentPage = Integer.valueOf(request.getParameter("currentPage"));

@@ -5,6 +5,12 @@ import cn.itcast.store.domain.User;
 import java.sql.SQLException;
 
 public interface UserService {
+    /**
+     * 注册用户
+     *
+     * @param user
+     * @throws Exception
+     */
     void register(User user)throws Exception;
 
     /**

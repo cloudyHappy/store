@@ -22,11 +22,20 @@ public class LoginFilter implements Filter {
 
     }
 
+    /**
+     * 主要用于用户选择了自动登录后的判断,没有勾选自动登录可以无视此filter
+     *
+     * @param req
+     * @param resp
+     * @param chain
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         String servletPath = request.getServletPath();
-       // System.out.println("servletPaht:"+servletPath+"\ncontextPath:"+request.getContextPath());
+        // System.out.println("servletPaht:"+servletPath+"\ncontextPath:"+request.getContextPath());
         //1.如果是登录页面,则放行
         if(servletPath.startsWith("UserServlet")){
             String method = request.getParameter("method");

@@ -13,6 +13,15 @@ public class PrivilegedFilter implements Filter {
     public void destroy() {
     }
 
+    /**
+     * 进行权限校验,如果没有登录,不允许访问购物车,订单项等
+     *
+     * @param req
+     * @param resp
+     * @param chain
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;

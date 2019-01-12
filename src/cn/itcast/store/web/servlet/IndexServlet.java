@@ -21,6 +21,9 @@ public class IndexServlet extends BaseServlet {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("indexServlet===");
+        /*
+            默认方法,获取最新商品, 最热商品发送到首页
+         */
         /*List<Category> categoryList = null;
         try {
              categoryList = categoryService.getAllCategory();

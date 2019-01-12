@@ -108,6 +108,13 @@ public class AdminProductServlet extends BaseServlet {
         return null;
     }
 
+    /**
+     * 更新商品的方法,传递流,自动生成文件名,并存储在upload文件夹下面,并返回文件名
+     *
+     * @param fileItem
+     * @return
+     * @throws IOException
+     */
     public String uploadFileMethod(FileItem fileItem) throws IOException {
         String fileName = fileItem.getName();
         String suffix = fileName.substring(fileName.lastIndexOf("."));
@@ -124,6 +131,14 @@ public class AdminProductServlet extends BaseServlet {
         return pimage;
     }
 
+    /**
+     * 获取商品数据,跳转商品编辑页面
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String editUI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pid = request.getParameter("pid");
         ProductService productService = new ProductServiceImpl();
@@ -136,6 +151,14 @@ public class AdminProductServlet extends BaseServlet {
         return "/admin/product/edit.jsp";
     }
 
+    /**
+     * 更新商品
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
         diskFileItemFactory.setSizeThreshold(1024 * 1024 * 3);//设置缓冲区大小
@@ -224,6 +247,14 @@ public class AdminProductServlet extends BaseServlet {
         return "/admin/product/pushDown_list.jsp";
     }
 
+    /**
+     * 上架商品
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String upperSelf(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pid = request.getParameter("pid");
         ProductService productService = new ProductServiceImpl();

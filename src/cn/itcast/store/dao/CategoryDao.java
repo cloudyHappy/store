@@ -15,6 +15,12 @@ public interface CategoryDao {
      */
     List<Category> getAllCategory()throws SQLException;
 
+    /**
+     * 添加分类
+     *
+     * @param category
+     * @throws SQLException
+     */
     void addCategory(Category category) throws SQLException;
 
     /**

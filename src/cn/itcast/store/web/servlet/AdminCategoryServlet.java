@@ -16,7 +16,15 @@ import java.util.List;
 
 @WebServlet("/AdminCategoryServlet")
 public class AdminCategoryServlet extends BaseServlet {
-
+    /**
+     * 获取所有的分类
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public String findAllCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         CategoryService categoryService = new CategoryServiceImpl();
@@ -31,6 +39,7 @@ public class AdminCategoryServlet extends BaseServlet {
 
     /**
      * 跳转至添加分类界面
+     *
      * @param request
      * @param response
      * @return
@@ -44,6 +53,7 @@ public class AdminCategoryServlet extends BaseServlet {
 
     /**
      * 添加分类
+     *
      * @param request
      * @param response
      * @return
@@ -54,7 +64,7 @@ public class AdminCategoryServlet extends BaseServlet {
             IOException {
         String cname = request.getParameter("cname");
         CategoryService categoryService = new CategoryServiceImpl();
-        Category category  = new Category();
+        Category category = new Category();
         category.setCid(UUIDUtils.getId());
         category.setCname(cname);
         try {
@@ -65,13 +75,23 @@ public class AdminCategoryServlet extends BaseServlet {
         response.sendRedirect("AdminCategoryServlet?method=findAllCategory");
         return null;
     }
-//deleteCategory
-public String deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-        IOException, SQLException {
+
+    /**
+     * 删除分类
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     * @throws SQLException
+     */
+    public String deleteCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException, SQLException {
         String cid = request.getParameter("cid");
         CategoryService categoryService = new CategoryServiceImpl();
         categoryService.deleteCategoryByCid(cid);
-    response.sendRedirect("AdminCategoryServlet?method=findAllCategory");
-    return null;
-        }
+        response.sendRedirect("AdminCategoryServlet?method=findAllCategory");
+        return null;
+    }
 }
